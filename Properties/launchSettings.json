@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "OpenApiTests - Help": {
+      "commandName": "Project",
+      "commandLineArgs": "--help"
+    },
+    "OpenApiTests - Generate": {
+      "commandName": "Project",
+      "commandLineArgs": "--generate --api-url http://localhost:5000"
+    },
+    "OpenApiTests - Run Tests": {
+      "commandName": "Project",
+      "commandLineArgs": "--api-url http://localhost:5000 --http-file TestFiles/endpoints.http"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <StartupObject>OpenApiTests.Program</StartupObject>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    
+    <!-- NuGet Package Configuration -->
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>openapi-tests</ToolCommandName>
+    <PackageId>openapi-tests</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Embrapa</Authors>
+    <Company>Embrapa</Company>
+    <Product>openapi-tests</Product>
+    <Description>A .NET global tool for generating and executing HTTP-based contract tests from OpenAPI specifications</Description>
+    <PackageTags>openapi;testing;contract-testing;api-testing;http;dotnet-tool</PackageTags>
+    <PackageProjectUrl>https://github.com/embrapa/openapitests</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/embrapa/openapitests</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.28" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
