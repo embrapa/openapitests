@@ -87,13 +87,13 @@ GET {{baseUrl}}/api/users/999999
 
 ### Create New User
 
-POST {{baseUrl}}/api/users## 
+POST {{baseUrl}}/api/users 
 
 Content-Type: application/json
 
 {
 
-  "name": "John Doe",### 1. Generate HTTP Test Filecd Tests
+  "name": "John Doe",
 
   "email": "john@example.com"
 
@@ -143,7 +143,7 @@ The HTTP file format follows the standard REST Client format:
 
 METHOD {{baseUrl}}/path
 
-Header: Valuedotnet tool uninstall --global OpenApiTestscd Tests
+Header: Value
 
 Content-Type: application/json
 
@@ -151,7 +151,7 @@ Content-Type: application/json
 
 {
 
-  "body": "content"GET {{baseUrl}}/api/users/999999```dotnet run
+  "body": "content"GET {{baseUrl}}/api/users/999999
 
 }
 
@@ -163,10 +163,10 @@ GET {{baseUrl}}/another-path
 
 # Expected: 200
 
-# This is a comment### Create New User
+# This is a comment
+### Create New User
 
 POST {{baseUrl}}/api/users
-
 
 ```
 
