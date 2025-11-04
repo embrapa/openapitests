@@ -63,7 +63,7 @@ dotnet tool uninstall --global openapi-tests
 Generate an `endpoints.http` file from your API's OpenAPI specification:
 ```bash
 
-dotnet openapi-tests --generate --api-url http://localhost:5000 --http-file TestFiles/endpoints.http
+openapi-tests --generate --api-url http://localhost:5000 --http-file TestFiles/endpoints.http
 
 ```
 
@@ -108,7 +108,7 @@ Execute the contract tests:
 
 ```bash
 
-dotnet openapi-tests --api-url http://localhost:5000 --http-file TestFiles/endpoints.http --output Reports
+openapi-tests --api-url http://localhost:5000 --http-file TestFiles/endpoints.http --output Reports
 
 ```
 

@@ -1,9 +1,8 @@
 name: Publish to NuGet
 
 on:
-  push:
-    tags:
-      - '*.*.*'
+  release:
+    types: [published]
 
 jobs:
   publish:
@@ -33,10 +32,9 @@ jobs:
           --source https://api.nuget.org/v3/index.json \
           --skip-duplicate
     
-    - name: Create GitHub Release
+    - name: Upload package to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
         files: bin/Release/*.nupkg
-        generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
