@@ -27,7 +27,7 @@ public class ReportGenerator
         html.AppendLine("<!DOCTYPE html>");
         html.AppendLine("<html>");
         html.AppendLine("<head>");
-        html.AppendLine("    <title>SEGAPI - Contract Test Report</title>");
+        html.AppendLine("    <title>API Contract Test Report</title>");
         html.AppendLine("    <meta charset='utf-8'>");
         html.AppendLine("    <style>");
         html.AppendLine("        body { font-family: Arial, sans-serif; margin: 20px; }");
@@ -45,7 +45,7 @@ public class ReportGenerator
         
         // Header
         html.AppendLine("    <div class='header'>");
-        html.AppendLine("        <h1>📊 SEGAPI Contract Test Report</h1>");
+        html.AppendLine("        <h1>📊 API Contract Test Report</h1>");
         html.AppendLine($"        <p>Generated at: {DateTime.Now:yyyy-MM-dd HH:mm:ss}</p>");
         html.AppendLine("    </div>");
         
@@ -126,7 +126,7 @@ public class ReportGenerator
     {
         var summary = new StringBuilder();
         
-        summary.AppendLine("SEGAPI Contract Tests - Summary Report");
+        summary.AppendLine("API Contract Tests - Summary Report");
         summary.AppendLine("=" + new string('=', 50));
         summary.AppendLine($"Generated: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
         summary.AppendLine();

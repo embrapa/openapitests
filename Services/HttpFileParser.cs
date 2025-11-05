@@ -66,7 +66,7 @@ public class HttpFileParser
             
             // Ignorar variáveis e comentários de seção
             if (trimmedLine.StartsWith("@") || 
-                trimmedLine.StartsWith("### SEGAPI") ||
+                trimmedLine.StartsWith("### API Contract Tests") ||
                 trimmedLine.StartsWith("### Use REST") ||
                 string.IsNullOrWhiteSpace(trimmedLine))
             {
@@ -115,7 +115,7 @@ public class HttpFileParser
             var trimmedLine = line.Trim();
             
             // Nome do teste (comentário ###)
-            if (trimmedLine.StartsWith("###") && !trimmedLine.Contains("SEGAPI") && !trimmedLine.Contains("Use REST"))
+            if (trimmedLine.StartsWith("###") && !trimmedLine.Contains("API Contract Tests") && !trimmedLine.Contains("Use REST"))
             {
                 testName = trimmedLine.Substring(3).Trim();
                 

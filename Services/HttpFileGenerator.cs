@@ -14,7 +14,7 @@ public class HttpFileGenerator
         var httpFile = new StringBuilder();
         
         // Header
-        httpFile.AppendLine("### SEGAPI Contract Tests - Manual HTTP Tests");
+        httpFile.AppendLine("### API Contract Tests - HTTP Test Collection");
         httpFile.AppendLine("### Use REST Client extension in VS Code to execute these requests");
         httpFile.AppendLine();
         httpFile.AppendLine($"@baseUrl = {baseUrl}");
