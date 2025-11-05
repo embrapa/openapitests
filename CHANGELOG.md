@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-11-05
+
+### Fixed
+- Fixed GitHub Actions publish workflow to correctly extract version from release tag
+- Fixed package versioning issue where all packages were generated as 1.0.0
+- Added `permissions: contents: write` to publish workflow to fix GitHub Release asset upload error
+
+### Changed
+- Workflow now uses dynamic versioning based on release tag number
+- Removed 'v' prefix requirement from release tags (now accepts tags like `1.0.2` directly)
+- Version number in .csproj is now overridden by release tag during CI/CD builds
+
 ## [1.0.1] - 2025-11-05
 
 ### Changed
