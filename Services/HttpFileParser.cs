@@ -98,7 +98,7 @@ public class HttpFileParser
     
     private TestCase? ParseRequest(string requestText, Dictionary<string, string> variables)
     {
-        var lines = requestText.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        var lines = requestText.Split('\n');
         
         string? testName = null;
         string? method = null;
@@ -109,10 +109,17 @@ public class HttpFileParser
         
         var bodyLines = new List<string>();
         bool inBody = false;
+        bool headersComplete = false;
         
         foreach (var line in lines)
         {
             var trimmedLine = line.Trim();
+            
+            // Skip empty lines before body starts
+            if (string.IsNullOrWhiteSpace(trimmedLine) && !inBody)
+            {
+                continue;
+            }
             
             // Nome do teste (comentário ###)
             if (trimmedLine.StartsWith("###") && !trimmedLine.Contains("API Contract Tests") && !trimmedLine.Contains("Use REST"))
@@ -133,6 +140,12 @@ public class HttpFileParser
                     expectedStatusCodes = new List<HttpStatusCode> { HttpStatusCode.Unauthorized };
                 }
             }
+            // Expected status comment
+            else if (trimmedLine.StartsWith("#") && trimmedLine.ToLower().Contains("expected:"))
+            {
+                // Parse expected status codes
+                continue;
+            }
             // Request line (GET, POST, etc.)
             else if (Regex.IsMatch(trimmedLine, @"^(GET|POST|PUT|DELETE|PATCH)\s+"))
             {
@@ -145,20 +158,34 @@ public class HttpFileParser
                 {
                     url = url.Replace($"{{{{{variable.Key}}}}}", variable.Value);
                 }
+                headersComplete = false;
             }
-            // Headers
-            else if (trimmedLine.Contains(":") && !inBody && !string.IsNullOrEmpty(method))
+            // Headers (after method, before body)
+            else if (!inBody && !headersComplete && !string.IsNullOrEmpty(method) && trimmedLine.Contains(":") && !trimmedLine.StartsWith("{") && !trimmedLine.StartsWith("["))
             {
-                var headerParts = trimmedLine.Split(':', 2);
-                if (headerParts.Length == 2)
+                var colonIndex = trimmedLine.IndexOf(':');
+                if (colonIndex > 0)
                 {
-                    headers[headerParts[0].Trim()] = headerParts[1].Trim();
+                    var headerName = trimmedLine.Substring(0, colonIndex).Trim();
+                    var headerValue = trimmedLine.Substring(colonIndex + 1).Trim();
+                    
+                    // Validate it's a header (not part of JSON)
+                    if (!string.IsNullOrWhiteSpace(headerName) && !headerName.Contains("{") && !headerName.Contains("["))
+                    {
+                        headers[headerName] = headerValue;
+                    }
                 }
             }
-            // Body (JSON)
-            else if (!string.IsNullOrEmpty(trimmedLine) && (trimmedLine.StartsWith("{") || inBody))
+            // Body starts (JSON object or array)
+            else if (!inBody && !string.IsNullOrEmpty(method) && (trimmedLine.StartsWith("{") || trimmedLine.StartsWith("[")))
             {
                 inBody = true;
+                headersComplete = true;
+                bodyLines.Add(line);
+            }
+            // Body continuation
+            else if (inBody)
+            {
                 bodyLines.Add(line);
             }
         }
@@ -166,7 +193,7 @@ public class HttpFileParser
         // Consolidar body
         if (bodyLines.Count > 0)
         {
-            body = string.Join("\n", bodyLines);
+            body = string.Join("\n", bodyLines).Trim();
         }
         
         // Validar se temos informações mínimas
