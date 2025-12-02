@@ -73,6 +73,14 @@ public class HttpFileParser
                 continue;
             }
             
+            // Ignorar linhas comentadas com # (exceto ### que define teste e # Expected: que define status)
+            if (trimmedLine.StartsWith("#") && 
+                !trimmedLine.StartsWith("###") && 
+                !trimmedLine.ToLower().Contains("expected:"))
+            {
+                continue;
+            }
+            
             // Nova seção de teste
             if (trimmedLine.StartsWith("###"))
             {
