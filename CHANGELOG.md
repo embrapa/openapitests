@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2025-12-02
+
+### Added
+- Implemented `# Expected:` directive to explicitly define expected HTTP status codes
+- Support for multiple expected status codes: `# Expected: 200,201,204`
+- New status codes inference from test names:
+  - `no content` or `204` → 204 NoContent
+  - `created` or `201` → 201 Created
+  - `accepted` or `202` → 202 Accepted
+  - `forbidden` or `403` → 403 Forbidden
+  - `conflict` or `409` → 409 Conflict
+  - `server error` or `500` → 500 InternalServerError
+
+### Changed
+- Refactored status code parsing into dedicated methods: `InferStatusCodesFromName()` and `ParseExpectedStatusCodes()`
+- `# Expected:` directive now takes priority over test name inference
+
 ## [1.0.4] - 2025-12-02
 
 ### Added
