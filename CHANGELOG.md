@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2025-12-02
+
+### Added
+- Support for commenting out tests using `#` prefix to disable them temporarily
+- Tests can now be disabled by adding `#` at the beginning of each line
+
+### Fixed
+- Fixed issue where commented lines with `#` were being incorrectly parsed as headers
+- Preserved special comments `# Expected:` for defining expected status codes
+
+### Changed
+- Updated `HttpFileParser.SplitRequests()` to ignore lines starting with `#` (except `###` test names and `# Expected:` directives)
+
 ## [1.0.3] - 2025-11-25
 
 ### Fixed
