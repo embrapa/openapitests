@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] - 2026-05-07
+
+### Changed
+- Migrated project target framework from `net9.0` to `net10.0`
+- Updated GitHub Actions workflows to use .NET SDK `10.0.x`
+- Converted solution file from `.sln` to `.slnx` format
+
 ## [1.0.5] - 2025-12-02
 
 ### Added
